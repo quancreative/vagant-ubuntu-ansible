@@ -1,0 +1,39 @@
+---
+- name: Remove Thunder Bird application
+  apt:
+    name: thunderbird
+    state: absent
+
+- name: Remove gnome-mines
+  apt:
+    name: gnome-mines
+    state: absent
+
+- name: Remove gnome-sudoku
+  apt:
+    name: gnome-sudoku
+    state: absent
+    
+- name: Remove gnome-mahjongg
+  apt:
+    name: gnome-mahjongg
+    state: absent
+
+- name: Remove aisleriot
+  apt:
+    name: aisleriot
+    state: absent
+    
+# Removes Shotwell Photo Manager    
+- name: Remove shotwell
+  apt:
+    name: shotwell
+    state: absent
+
+# http://askubuntu.com/questions/760204/how-to-remove-the-unity-amazon-package-in-16-04
+# - name: Remove Amazon from the dash.
+#   shell: cp /usr/share/applications/ubuntu-amazon-default.desktop ~/.local/share/applications/ubuntu-amazon-default.desktop
+
+# - name: Remove Amazon from the dash.
+#   shell: echo Hidden=true >> ~/.local/share/applications/ubuntu-amazon-default.desktop
+  

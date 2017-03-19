@@ -1,0 +1,57 @@
+---
+- hosts: lamp
+  become: yes
+  # become_method: sudo
+  # become_user: root
+  # sudo: true
+  gather_facts: true
+
+  vars_files:
+    - vars/main.yml
+
+  # roles are a way to group tasks; they will run in the sequence determined here
+  roles:
+    # - ansible-phpstorm
+    # - ansible-role-phpstorm
+    # - desktop
+  #   - role: jdauphant.sublimetext
+
+  tasks:
+    - name: install apache2
+      apt: name=apache2 state=installed
+
+    - name: start apache2
+      service: name=apache2 state=running
+
+    - name: Installing something
+      apt: "name={{ item }} state=installed"
+      with_items:
+      - git 
+
+    - name: Installing common package
+      apt: "name={{ item }} state=installed"
+      with_items: "{{ common_packages }}"
+
+    - include: tasks/desktop_app.yml
+
+    - include: tasks/remove_app.yml
+
+    - name: Download sublimetext .deb file
+      get_url: "url=https://download.sublimetext.com/sublime-text_build-3126_{{sublimetext_arch}}.deb dest={{sublimetext_tmp_deb}}"
+      tags: ["packages","sublimetext"]
+
+    - name: Install sublimetext for Debian family OS
+      apt: deb={{sublimetext_tmp_deb}}
+      tags: ["packages","sublimetext"]
+
+    # - name: Copy and Execute the script 
+      # script: ../scripts/test.sh
+
+    - name: Transfer the script
+      copy: src=../scripts/test.sh dest=/home/vagrant mode=0777
+
+    # - name: Execute the script
+    #   command: sh /home/vagrant/test.sh
+
+
+

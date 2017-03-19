@@ -1,0 +1,38 @@
+---
+
+sublimetext_dl_source: "https://download.sublimetext.com"
+sublimetext_build: 3126
+sublimetext_arch: "{% if ansible_architecture == 'x86_64' %}amd64{% else %}i386{% endif %}"
+sublimetext_tmp_deb: "/tmp/{{sublimetext_build}}sublimetext.deb"
+
+common_packages:
+  # - sublime-text-installer
+  - unzip
+
+username: vagrant
+
+gsettings:
+
+  - { key: 'org.gtk.Settings.FileChooser show-hidden',                  value: 'false' }
+  - { key: 'org.gnome.nautilus.preferences default-folder-viewer',      value: 'list-view' }
+
+  - { key: 'com.canonical.Unity.Lenses',                  value: 'none' }
+
+  - { key: 'org.gnome.desktop.session.idle-delay',                  value: 'uint32 6600' }
+  - { key: 'org.gnome.desktop.session idle-delay',                  value: 'uint32 9900' }
+  - { key: 'org.gnome.desktop.screensaver.lock-enabled',            value: 'false' }
+  - { key: 'org.gnome.desktop.screensaver.ubuntu-lock-on-suspend',  value: 'false' }
+  # keyboard
+  # - { key: 'org.gnome.desktop.input-sources.sources',               value: "[('xkb', 'us'), ('xkb', 'ru')]" } # todo: don't work
+  # - { key: 'org.gnome.desktop.wm.keybindings.switch-input-source',  value: "['<Alt>Shift_L']" }
+  - { key: 'org.gnome.desktop.wm.keybindings show-desktop',  value: "['<Super>d']" }
+  - { key: 'org.gnome.desktop.wm.keybindings maximize',  value: "['<Super>Up']" }
+  - { key: 'org.gnome.settings-daemon.plugins.media-keys terminal',  value: "['<Super>t']" }
+
+  # keyboard
+  # - { key: 'org.gnome.rhythmbox.rhythmdb',                          value: "['file://{{music_dir}}']" } # TODO: always changed
+
+  # Not working
+  # To see CompizConfig Settings Manager, run: dconf dump /org/compiz/profiles/unity/ | grep active-plugins
+  # @see http://askubuntu.com/questions/74313/list-and-enable-disable-compiz-plugins-on-command-line/635159#635159
+  - { key: 'org.compiz.core:/org/compiz/profiles/unity/plugins/core/ active-plugins',  value: "['core', 'composite', 'opengl', 'place', 'regex', 'session', 'workarounds', 'copytex', 'snap', 'resize', 'compiztoolbox', 'grid', 'mousepoll', 'imgpng', 'move', 'expo', 'scale', 'unitymtgrabhandles', 'unityshell']" }
