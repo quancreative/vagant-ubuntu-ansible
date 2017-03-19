@@ -42,6 +42,16 @@
     state: latest
     install_recommends: no
 
+# Install Sublime Text 3
+- name: Download sublimetext .deb file
+  get_url: "url=https://download.sublimetext.com/sublime-text_build-3126_{{sublimetext_arch}}.deb dest={{sublimetext_tmp_deb}}"
+  tags: ["packages","sublimetext"]
+
+- name: Install sublimetext for Debian family OS
+  apt: deb={{sublimetext_tmp_deb}}
+  tags: ["packages","sublimetext"]
+
+# Base16 
 - name: base16 - checkout repo
   git:
     repo: https://github.com/chriskempson/base16-gnome-terminal.git

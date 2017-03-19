@@ -11,22 +11,29 @@
 
   # roles are a way to group tasks; they will run in the sequence determined here
   roles:
+    - geerlingguy.apache
+    - geerlingguy.mysql
+    - quan.php-5-6
+    # - geerlingguy.php_downloaded
+    # - geerlingguy.php
+    # - { role: Aplyca.PHP }
+    # - ansible-role-php
+    # - aplyca.ansible-role-php
+    - geerlingguy.php-mysql
+    - geerlingguy.composer
+    - geerlingguy.drush
+    # - geerlingguy.drupal
     # - ansible-phpstorm
-    # - ansible-role-phpstorm
+    - ansible-role-phpstorm
     # - desktop
   #   - role: jdauphant.sublimetext
 
   tasks:
-    - name: install apache2
-      apt: name=apache2 state=installed
-
-    - name: start apache2
-      service: name=apache2 state=running
-
     - name: Installing something
       apt: "name={{ item }} state=installed"
       with_items:
       - git 
+      - dos2unix 
 
     - name: Installing common package
       apt: "name={{ item }} state=installed"
@@ -34,24 +41,24 @@
 
     - include: tasks/desktop_app.yml
 
+    - include: ../private/web_work_setup.yml
+
     - include: tasks/remove_app.yml
 
-    - name: Download sublimetext .deb file
-      get_url: "url=https://download.sublimetext.com/sublime-text_build-3126_{{sublimetext_arch}}.deb dest={{sublimetext_tmp_deb}}"
-      tags: ["packages","sublimetext"]
-
-    - name: Install sublimetext for Debian family OS
-      apt: deb={{sublimetext_tmp_deb}}
-      tags: ["packages","sublimetext"]
-
     # - name: Copy and Execute the script 
-      # script: ../scripts/test.sh
+      # script: ../scripts/ubuntu_settings.sh
 
     - name: Transfer the script
-      copy: src=../scripts/test.sh dest=/home/vagrant mode=0777
+      copy: src=../scripts/ubuntu_settings.sh dest=/home/vagrant mode=0777
 
-    # - name: Execute the script
-    #   command: sh /home/vagrant/test.sh
+    - name: Convert the script
+      command: dos2unix /home/vagrant/ubuntu_settings.sh
 
+    - name: Execute the script
+      command: sh /home/vagrant/ubuntu_settings.sh
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted
 
 

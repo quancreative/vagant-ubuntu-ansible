@@ -4,6 +4,43 @@ sublimetext_dl_source: "https://download.sublimetext.com"
 sublimetext_build: 3126
 sublimetext_arch: "{% if ansible_architecture == 'x86_64' %}amd64{% else %}i386{% endif %}"
 sublimetext_tmp_deb: "/tmp/{{sublimetext_build}}sublimetext.deb"
+phpstorm_version: 2016.3.3
+php_source_version: "5.6"
+php_source_make_command: "make --jobs=2"
+
+php_memory_limit: "128M"
+php_max_execution_time: "90"
+php_upload_max_filesize: "256M"
+# php_packages:
+#   - php
+#   - php-cli
+#   - php-common
+#   - php-devel
+#   - php-gd
+#   - php-mbstring
+#   - php-pdo
+#   - php-pecl-apcu
+#   - php-xml
+
+php:
+    package: php5.6
+    conf_dir: /etc/php/5.6/mods-available
+    modules:
+      - cli
+      - mbstring
+    composer:
+      present: True
+      auth: []
+    robo:
+      present: True
+      version: latest
+
+# php_install_recommends: no
+drupal_install_site: true
+drupal_build_composer_project: true
+drupal_composer_install_dir: "/var/www/drupal"
+drupal_core_path: "{{ drupal_composer_install_dir }}/web"
+drupal_domain: "example.com"
 
 common_packages:
   # - sublime-text-installer
@@ -13,7 +50,7 @@ username: vagrant
 
 gsettings:
 
-  - { key: 'org.gtk.Settings.FileChooser show-hidden',                  value: 'false' }
+  - { key: 'org.gtk.Settings.FileChooser show-hidden',                  value: 'true' }
   - { key: 'org.gnome.nautilus.preferences default-folder-viewer',      value: 'list-view' }
 
   - { key: 'com.canonical.Unity.Lenses',                  value: 'none' }
