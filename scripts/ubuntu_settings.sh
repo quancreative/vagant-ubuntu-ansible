@@ -2,7 +2,7 @@
 
 gsettings set com.canonical.Unity.Lenses remote-content-search 'none'
 # Set various system options.
-# gsettings set org.gnome.desktop.session idle-delay "uint32 300"
+gsettings set org.gnome.desktop.session idle-delay "uint32 9900"
 # gsettings set org.gnome.settings-daemon.plugins.power idle-dim true
 # gsettings set org.gnome.desktop.screensaver lock-enabled true
 # gsettings set org.gnome.desktop.screensaver lock-delay "uint32 0"
@@ -36,6 +36,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Super>t'
 # dconf write /com/canonical/indicator/datetime/time-format "'24-hour'"
 # dconf write /com/canonical/indicator/datetime/show-seconds true
 # dconf write /com/canonical/indicator/datetime/show-auto-detected-location true
+dconf write /org/compiz/profiles/unity/plugins/grid/left-maximize "'<Super>Left'"
+dconf write /org/compiz/profiles/unity/plugins/grid/right-maximize "'<Super>Right'"
 
 # Enable to always show hidden files
 gsettings set org.gtk.Settings.FileChooser show-hidden true
