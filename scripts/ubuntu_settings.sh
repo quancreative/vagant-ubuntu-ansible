@@ -16,12 +16,6 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Super>t'
 # gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
 # gsettings set org.compiz.integrated show-hud "['']"
 # gsettings set com.canonical.indicator.sound visible true
-# dconf write /org/compiz/profiles/unity/plugins/unityshell/show-launcher "'<Control><Super>'"
-
-# gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
-# gsettings set org.compiz.integrated show-hud "['']"
-# gsettings set com.canonical.indicator.sound visible true
-# dconf write /org/compiz/profiles/unity/plugins/unityshell/show-launcher "'<Control><Super>'"
 
 # Change default file manager to Nemo.
 # xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
@@ -31,11 +25,11 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Super>t'
 # gconftool-2 --type string --set /apps/gnome-do/preferences/Do/Platform/Common/AbstractKeyBindingService/Summon_Do "<Super>space"
 
 # Clock tray
-# dconf write /com/canonical/indicator/datetime/show-day true
 # dconf write /com/canonical/indicator/datetime/show-date true
 # dconf write /com/canonical/indicator/datetime/time-format "'24-hour'"
 # dconf write /com/canonical/indicator/datetime/show-seconds true
 # dconf write /com/canonical/indicator/datetime/show-auto-detected-location true
+# dconf write /org/compiz/profiles/unity/plugins/unityshell/show-launcher "'<Control><Super>'"
 dconf write /org/compiz/profiles/unity/plugins/grid/left-maximize "'<Super>Left'"
 dconf write /org/compiz/profiles/unity/plugins/grid/right-maximize "'<Super>Right'"
 
