@@ -85,3 +85,22 @@
 #   git:
 #     repo: https://github.com/chriskempson/base16-shell.git
 #     dest: "/home//.config/base16-shell"
+
+# - name: Copy PhpStorm Programs folder
+#   command: cp -rf /vagrant/private/PhpStorm/Programs /home/vagrant
+
+- name: Copy PhpStorm Programs folder
+  command: cp -rf /vagrant/private/PhpStorm2016.1/Programs /home/vagrant
+
+- name: Copy PhpStorm .PhpStorm2016.1 folder
+  command: cp -rf /vagrant/private/PhpStorm2016.1/.PhpStorm2016.1 /home/vagrant
+
+- name: Copy PhpStorm .java folder
+  command: cp -rf /vagrant/private/PhpStorm2016.1/.java /home/vagrant
+
+- name: Copy phpstorm.desktop 
+  copy: 
+    src: ../private/PhpStorm2016.1/PhpStorm2016.desktop
+    dest: /home/vagrant/Desktop 
+    force: yes
+    mode: 0777

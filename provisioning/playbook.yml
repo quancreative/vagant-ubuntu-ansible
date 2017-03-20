@@ -19,12 +19,12 @@
     # - { role: Aplyca.PHP }
     # - ansible-role-php
     # - aplyca.ansible-role-php
-    - geerlingguy.php-mysql
+    # - geerlingguy.php-mysql
     - geerlingguy.composer
     - geerlingguy.drush
     # - geerlingguy.drupal
     # - ansible-phpstorm
-    - ansible-role-phpstorm
+    # - ansible-role-phpstorm
     # - desktop
   #   - role: jdauphant.sublimetext
 
@@ -45,9 +45,6 @@
 
     - include: tasks/remove_app.yml
 
-    # - name: Copy and Execute the script 
-      # script: ../scripts/ubuntu_settings.sh
-
     - name: Transfer the script
       copy: src=../scripts/ubuntu_settings.sh dest=/home/vagrant mode=0777
 
@@ -56,6 +53,16 @@
 
     - name: Execute the script
       command: sh /home/vagrant/ubuntu_settings.sh
+
+    - name: Transfer the .idea folder
+      copy: 
+        src: ../files/.idea 
+        dest: /var/www/html 
+        force: no
+        mode: 0777      
+
+    # - name: Copy and Execute the script 
+      # script: ../scripts/ubuntu_settings.sh
 
   handlers:
     - name: restart apache2

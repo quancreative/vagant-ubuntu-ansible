@@ -6,7 +6,7 @@ sublimetext_arch: "{% if ansible_architecture == 'x86_64' %}amd64{% else %}i386{
 sublimetext_tmp_deb: "/tmp/{{sublimetext_build}}sublimetext.deb"
 phpstorm_version: 2016.3.3
 php_source_version: "5.6"
-php_source_make_command: "make --jobs=2"
+php_source_make_command: "make --jobs=4"
 
 php_memory_limit: "128M"
 php_max_execution_time: "90"
@@ -55,7 +55,6 @@ gsettings:
 
   - { key: 'com.canonical.Unity.Lenses',                  value: 'none' }
 
-  - { key: 'org.gnome.desktop.session.idle-delay',                  value: 'uint32 6600' }
   - { key: 'org.gnome.desktop.session idle-delay',                  value: 'uint32 9900' }
   - { key: 'org.gnome.desktop.screensaver.lock-enabled',            value: 'false' }
   - { key: 'org.gnome.desktop.screensaver.ubuntu-lock-on-suspend',  value: 'false' }

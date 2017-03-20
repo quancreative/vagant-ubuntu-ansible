@@ -37,3 +37,17 @@
 # - name: Remove Amazon from the dash.
 #   shell: echo Hidden=true >> ~/.local/share/applications/ubuntu-amazon-default.desktop
   
+- name: Remove Music folder
+  command: rm -rf /home/vagrant/Music
+
+- name: Remove Pictures folder
+  command: rm -rf /home/vagrant/Pictures
+
+- name: Remove Videos folder
+  command: rm -rf /home/vagrant/Videos
+
+- name: Remove Templates folder
+  command: rm -rf /home/vagrant/Templates
+
+- name: Remove Public folder
+  command: rm -rf /home/vagrant/Public
